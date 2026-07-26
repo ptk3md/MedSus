@@ -3,7 +3,7 @@ name: Importar arquivos do projeto
 on:
   push:
     paths:
-      - '.bootstrap/project.tar.gz.b64'
+      - '.bootstrap/chunk-07.b64'
 
 permissions:
   contents: write
@@ -18,7 +18,7 @@ jobs:
       - name: Extrair projeto
         shell: bash
         run: |
-          base64 --decode .bootstrap/project.tar.gz.b64 > /tmp/medsus-source.tar.gz
+          cat .bootstrap/chunk-*.b64 | base64 --decode > /tmp/medsus-source.tar.gz
           tar -xzf /tmp/medsus-source.tar.gz -C .
 
       - name: Publicar arquivos extraídos
